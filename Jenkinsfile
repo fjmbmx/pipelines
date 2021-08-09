@@ -10,7 +10,7 @@ pipeline{
         stage("maven sonar") {
             steps{
                 withMaven() {
-                    sh 'mvn sonar:sonar -Dsonar.host.url=http://http://0.0.0.0:9000/ -Dsonar.credentials=login:6ca02289d0fb3cd5433c031420889da3bd090362'
+                    sh 'mvn sonar:sonar -Dsonar.host.url=http://http://0.0.0.0:9000/ -Dsonar.credentials=login:fdb5f436dc22040e0604932f5702b455a7770e80'
                 }
             }
         }
