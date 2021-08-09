@@ -7,10 +7,10 @@ pipeline{
                     git branch: 'main', url: 'https://github.com/fjmbmx/webflux-redis.git'
                 }
             }
-        stage('SonarQube analysis') {
-            steps {
-                withSonarQubeEnv('SonarQube') {
-                    sh "./gradlew sonarqube"
+        stage("maven sonar") {
+            steps{
+                withMaven() {
+                    sh 'mvn sonar:sonar -Dsonar.host.url=http://http://0.0.0.0:9000/ -Dsonar.credentials=login:6ca02289d0fb3cd5433c031420889da3bd090362'
                 }
             }
         }
