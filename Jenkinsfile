@@ -1,8 +1,8 @@
 pipeline{
     agent any
-     tools { 
-      maven 'MAVEN_HOME' 
-      jdk 'JAVA_HOME' 
+    tools {
+        maven 'Default Maven'
+        jdk 'DefaultJDK'
     }
     stages{
         stage('Clone sources') {
@@ -17,7 +17,7 @@ pipeline{
                  // Tenga en cuenta que los parámetros en withSonarQubeEnv () deben ser los mismos que la configuración de Nombre en los servidores SonarQube antes
                 withSonarQubeEnv('SonarQube') {
                     // Tenga en cuenta que los parámetros en withSonarQubeEnv () deben ser los mismos que la configuración de Nombre en los servidores SonarQube antes
-                    withMaven(maven: 'M3') {
+                    withMaven() {
                         sh "mvn clean package -Dmaven.test.skip = true sonar:sonar -Dsonar.projectKey = santander_service -Dsonar.sourceEncoding =UTF-8 -Dsonar.exclusions = src/test/** -Dsonar.sources = src/ -Dsonar.java.binaries = target/classes -Dsonar.host.url =http://localhost:9000 -Dsonar.login =e3b8996f8620f2402b38b30251d7ab393c275d5a"
                 }    
         
