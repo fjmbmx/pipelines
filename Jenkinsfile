@@ -18,7 +18,7 @@ pipeline{
                 withSonarQubeEnv('SonarQube') {
                     // Tenga en cuenta que los parámetros en withSonarQubeEnv () deben ser los mismos que la configuración de Nombre en los servidores SonarQube antes
                     withMaven() {
-                        sh "mvn clean package -Dmaven.test.skip = true sonar:sonar -Dsonar.projectKey = santander_service -Dsonar.sourceEncoding =UTF-8 -Dsonar.exclusions = src/test/** -Dsonar.sources = src/ -Dsonar.java.binaries = target/classes -Dsonar.host.url =http://localhost:9000 -Dsonar.login =e3b8996f8620f2402b38b30251d7ab393c275d5a"
+                        sh "mvn clean package -Dmaven.test.skip = true sonar:sonar -Dsonar.projectKey = santander_service -Dsonar.sourceEncoding =UTF-8 -Dsonar.exclusions = src/test/** -Dsonar.sources = src/ -Dsonar.java.binaries = target/classes -Dsonar.host.url =http://localhost:9000 -Dsonar.login =8ece15e8dcd076828dff39991a29e76c53672c9d"
                     }    
                 }
                 script {
@@ -33,11 +33,7 @@ pipeline{
                     }
                  }
             }
-        }
-
-
-                  //  sh 'mvn sonar:sonar -Dsonar.host.url=http://0.0.0.0:9000/ -Dsonar.credentials=login:fdb5f436dc22040e0604932f5702b455a7770e80'
-                 
+        }                 
         stage("Quality gate") {
             steps {
                 waitForQualityGate abortPipeline: true
