@@ -1,15 +1,15 @@
 pipeline{
     agent any
     tools {
-        maven 'Default Maven'
+        maven 'DefaultMaven'
         jdk 'DefaultJDK'
     }
     stages{
         stage('Clone sources') {
             steps {
                     git branch: 'main', url: 'https://github.com/fjmbmx/webflux-redis.git'
-                }
             }
+        }
         stage("SonarQube") {
 
             steps{
@@ -19,8 +19,8 @@ pipeline{
                     // Tenga en cuenta que los parámetros en withSonarQubeEnv () deben ser los mismos que la configuración de Nombre en los servidores SonarQube antes
                     withMaven() {
                         sh "mvn clean package -Dmaven.test.skip = true sonar:sonar -Dsonar.projectKey = santander_service -Dsonar.sourceEncoding =UTF-8 -Dsonar.exclusions = src/test/** -Dsonar.sources = src/ -Dsonar.java.binaries = target/classes -Dsonar.host.url =http://localhost:9000 -Dsonar.login =e3b8996f8620f2402b38b30251d7ab393c275d5a"
-                }    
-        
+                    }    
+                }
                 script {
                     timeout(1) {
                                  // Establezca el tiempo de espera aquí en 1 minuto, no aparecerá atascado en el estado de verificación
@@ -32,7 +32,7 @@ pipeline{
                         }
                     }
                  }
-                }
+            }
         }
 
 
