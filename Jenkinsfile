@@ -28,7 +28,7 @@ pipeline{
                         def qg = waitForQualityGate('SonarQube')
                                  // Nota: Los parámetros en waitForQualityGate () aquí también deberían ser los mismos que la configuración de Name en servidores SonarQube antes
                         if (qg.status != 'OK') {
-                            error "No se pudo pasar la verificación del umbral de calidad del código de Sonarqube, ¡modifíquelo a tiempo! error: $ {qg.status}"
+                            error "No se pudo pasar la verificación del umbral de calidad del código de Sonarqube, ¡modifíquelo a tiempo! error"
                         }
                     }
                  }
